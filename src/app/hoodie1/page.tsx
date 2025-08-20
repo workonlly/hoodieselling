@@ -1,5 +1,7 @@
+
 "use client";
 import React, { useState } from 'react';
+import HoodieSwiper from '../swiper';
 
 export default function Hoodie1() {
   const [selectedSize, setSelectedSize] = useState('');
@@ -113,13 +115,9 @@ export default function Hoodie1() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 py-8 px-4">
       <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 flex flex-col md:flex-row items-center max-w-3xl w-full">
-        {/* Product Image */}
+        {/* Product Image Swiper */}
         <div className="flex-shrink-0 w-64 h-64 bg-gray-100 rounded-2xl flex items-center justify-center overflow-hidden mb-6 md:mb-0 md:mr-8">
-          <img
-            src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
-            alt="Wake - Hoodie"
-            className="object-contain w-full h-full"
-          />
+          <HoodieSwiper />
         </div>
   {/* Product Details */}
   <div className="flex-1 flex flex-col">

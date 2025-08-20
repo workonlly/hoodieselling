@@ -22,13 +22,15 @@ export default function HoodieSwiper() {
       className="w-full h-56 rounded-2xl bg-gray-100 mb-4"
     >
       {images.map((img, idx) => (
-        <SwiperSlide key={idx} className="flex items-center justify-center">
-          <img
-            src={img.src}
-            alt={img.alt}
-            className="object-contain w-48 h-48"
-            draggable={false}
-          />
+        <SwiperSlide key={idx}>
+          <div className="flex items-center justify-center w-full h-56">
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="object-contain max-w-full max-h-full"
+              draggable={false}
+            />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
