@@ -3,14 +3,13 @@ import Header from "./header";
 import Footer from "./footer";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
-import type { MutableRefObject } from "react";
 import { gsap } from "gsap";
 import HoodieSwiper from "./swiper";
 // No hooks needed here
 export default function Home() {
   // Animate card on click
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const btnRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const btnRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const handleCardClick = (idx: number) => {
     const el = cardRefs.current[idx];
     if (el) {
@@ -27,23 +26,25 @@ export default function Home() {
   }, []);
   // Animate Buy Now button on hover
   useEffect(() => {
-    btnRefs.current.forEach((btn) => {
+    const btns = btnRefs.current;
+    const enterFns: Array<() => void> = [];
+    const leaveFns: Array<() => void> = [];
+    btns.forEach((btn, idx) => {
       if (btn) {
         const enter = () => gsap.to(btn, { scale: 1.07, boxShadow: "0 0 24px #70e00099", duration: 0.2, ease: "power1.out" });
         const leave = () => gsap.to(btn, { scale: 1, boxShadow: "", duration: 0.2, ease: "power1.in" });
         btn.addEventListener("mouseenter", enter);
         btn.addEventListener("mouseleave", leave);
-        // Store for cleanup
-        (btn as any)._gsapEnter = enter;
-        (btn as any)._gsapLeave = leave;
+        enterFns[idx] = enter;
+        leaveFns[idx] = leave;
       }
     });
     // Cleanup
     return () => {
-      btnRefs.current.forEach((btn) => {
-        if (btn && (btn as any)._gsapEnter && (btn as any)._gsapLeave) {
-          btn.removeEventListener("mouseenter", (btn as any)._gsapEnter);
-          btn.removeEventListener("mouseleave", (btn as any)._gsapLeave);
+      btns.forEach((btn, idx) => {
+        if (btn && enterFns[idx] && leaveFns[idx]) {
+          btn.removeEventListener("mouseenter", enterFns[idx]);
+          btn.removeEventListener("mouseleave", leaveFns[idx]);
         }
       });
     };
