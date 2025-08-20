@@ -53,14 +53,14 @@ export default function Home() {
     <div className="min-h-screen flex flex-col justify-between">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <div className="grid grid-cols-2 gap-8 w-full max-w-4xl px-4 opacity-0 animate-fadein">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full max-w-4xl px-2 sm:px-4 opacity-0 animate-fadein">
           {[1, 2, 3, 4].map((i, idx) => (
             <div
               key={i}
               ref={el => {
                 cardRefs.current[idx] = el;
               }}
-              className="bg-black rounded-3xl shadow-xl border border-gray-200 p-4 flex flex-col items-center relative min-h-[220px] cursor-pointer opacity-0"
+              className="bg-black rounded-3xl shadow-xl border border-gray-200 p-3 sm:p-4 flex flex-col items-center relative min-h-[220px] cursor-pointer opacity-0"
               onClick={() => handleCardClick(idx)}
             >
               {/* Favorite/heart icon */}
@@ -84,17 +84,17 @@ export default function Home() {
                 </svg>
               </button>
               {/* Product image swiper */}
-              <div className="w-full h-55 flex items-center justify-center bg-gray-100 rounded-2xl overflow-hidden mb-4 transition-shadow duration-300 group-hover:shadow-[0_0_32px_0_rgba(112,224,0,0.6)] relative">
+              <div className="w-full h-40 sm:h-55 flex items-center justify-center bg-gray-100 rounded-2xl overflow-hidden mb-3 sm:mb-4 transition-shadow duration-300 group-hover:shadow-[0_0_32px_0_rgba(112,224,0,0.6)] relative">
                 <HoodieSwiper />
-                <div className="absolute right-0 bottom-0 bg-black text-white text-lg font-bold rounded-xl px-4 py-1 shadow z-20">
+                <div className="absolute right-0 bottom-0 bg-black text-white text-base sm:text-lg font-bold rounded-xl px-3 sm:px-4 py-1 shadow z-20">
                   {i === 1 ? "$129" : i === 2 ? "$99" : i === 3 ? "$109" : "$119"}
                 </div>
               </div>
               {/* Price badge */}
               
               {/* Title and brand */}
-              <div className="w-full flex flex-col items-start mt-2">
-                <div className="text-xl font-bold text-white">
+              <div className="w-full flex flex-col items-start mt-1 sm:mt-2">
+                <div className="text-lg sm:text-xl font-bold text-white">
                   {i === 1
                     ? "Wake - Hoodie"
                     : i === 2
@@ -103,7 +103,7 @@ export default function Home() {
                     ? "Classic - Hoodie"
                     : "Sporty - Hoodie"}
                 </div>
-                <div className="text-xs text-white font-medium mt-1">
+                <div className="text-xs sm:text-sm text-white font-medium mt-1">
                   {i === 1
                     ? "Wake Official"
                     : i === 2
@@ -114,9 +114,9 @@ export default function Home() {
                 </div>
               </div>
               {/* Reviews */}
-              <div className="w-full flex flex-row items-center mt-2">
-                <span className="text-white font-semibold text-sm mr-1">10k Reviews</span>
-                <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/></svg>
+              <div className="w-full flex flex-row items-center mt-1 sm:mt-2">
+                <span className="text-white font-semibold text-xs sm:text-sm mr-1">10k Reviews</span>
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/></svg>
               </div>
               {/* Buy Now Button */}
               <Link href={`/hoodie${i}`} passHref legacyBehavior>
@@ -124,7 +124,7 @@ export default function Home() {
                   ref={el => {
                     btnRefs.current[idx] = el;
                   }}
-                  className="w-full mt-4 bg-[#70e000] hover:bg-white text-white hover:text-black font-bold py-3 px-6 rounded-2xl transition-colors duration-200 shadow-lg hover:shadow-xl text-center block"
+                  className="w-full mt-3 sm:mt-4 bg-[#70e000] hover:bg-white text-white hover:text-black font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-2xl transition-colors duration-200 shadow-lg hover:shadow-xl text-center block text-base sm:text-lg"
                 >
                   Buy Now
                 </a>
